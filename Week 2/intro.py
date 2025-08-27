@@ -25,5 +25,6 @@ if country_of_origin == "Ukraine":
     print(f"{player_name}, LMAO bros in the trenches")
 elif country_of_origin == "ukraine":
     print(f"{player_name}, LMAO bros in the trenches")
-
+elif country_of_origin == "UKRAINE":
+    print(f"{player_name}, LMAO bros in the trenches")
 else: print(f"{player_name} is from {country_of_origin}")
