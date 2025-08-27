@@ -22,6 +22,6 @@ print(f"Welcome, {player_name}, it's great to have you here.") # with the f in f
 country_of_origin = input(f"Well {player_name}, can you tell me the country you're from")
 
 if country_of_origin == "Ukraine":
-    print(f"{player_name}, bros in the trenches")
+    print(f"{player_name}, LMAO bros in the trenches")
 
 else: print(f"{player_name} is from {country_of_origin}")
