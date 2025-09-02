@@ -7,5 +7,6 @@ print("Fuctions Below")
 
 def sample_function():
     print("You ran the fuction")
+    sample_function()
 
 sample_function()
