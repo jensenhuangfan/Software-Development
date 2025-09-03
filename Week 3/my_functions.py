@@ -21,3 +21,23 @@ num_1 = float(input("Please enter a number:"))
 num_2 = float(input("Please enter another number:"))
 
 do_addition(num_1, num_2)
+
+
+
+
+your_name = input("Welcome travler whats your name")
+your_age = int(input(f"Hi {your_name} What is your age?"))
+
+
+def npc_response():
+
+    if your_age < 50:
+        print("Hi there young travel. GET A JOB!")
+    elif your_age >=50:
+        print("They changed the cracker barrel logo back, now get breakfest before heading to the retirment home")
+    else:
+        print("Something went wrong. Error Code -243E unknown error accoured, please reboot my_function.py")
+
+    
+
+print(npc_response)
