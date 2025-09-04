@@ -32,3 +32,9 @@ print(message)
 
 starships = ["Millennium Falcon", "X-Wing", "TIE Fighter"]
 print("Available starships:", starships)
+
+print("The Seconf starship in the fleet is:", starships[1])
+
+print("The First starship ready for battle is:", starships[0])
+print("The last starship in formation is:", starships[-1])
+
