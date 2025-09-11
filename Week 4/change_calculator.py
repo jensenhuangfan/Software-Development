@@ -55,3 +55,5 @@ pennies = int(pennies)
 cents = cents - pennies * 1
 
 print(half_dollar, quarter, dimes, nickle, pennies)
+
+print(f"Change for ${og_money}.{og_cents} is {hundred_bills} One Hundred dollar bills, {fifty_bills} fifty dollar bills, {twenty_bills} twenty dollar bills, {ten_bills} ten dollar bills, {five_bills} five dollar bills, {two_bills} two dollar bills, {one_bills} one dollar bills, {half_dollar} half dollar coins, {quarter} quarters, {dimes} dimes, {nickle} nickles, and {pennies} pennies.")
