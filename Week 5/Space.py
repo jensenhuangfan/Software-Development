@@ -1,4 +1,4 @@
-weight = float(input("Codey, how much do you weigh in LB?"))
+weight = float(input("Codey, how much do you weigh in LB? DONT USE LETTERS IT WILL FAIL"))
 mercury_weight = weight / 100 * 90
 venus_weight  = weight / 100 * 91
 mars_weight = weight / 100 * 38
