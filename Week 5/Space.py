@@ -21,6 +21,8 @@ while autorun:
       Neptune Weight = {neptune_weight}LB
       Pluto Weight = {pluto_weight}LB""")
 
+
+#AI coached, taught me about while loops for python
       run_again = input("Do you want to run again? y/n ")
       if run_again != "y":
             autorun = False
