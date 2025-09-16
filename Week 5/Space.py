@@ -20,30 +20,5 @@ def weight_convertion():
      Uranus Weight = {uranus_weight}LB
      Neptune Weight = {neptune_weight}LB
      Pluto Weight = {pluto_weight}LB""")
-    option_to_run_again()
-
-
-def option_to_run_again():        
-        run_again = input("Do you want to run again? y/n or Y/N: ")
-        if run_again == "y":
-              weight_convertion()
-        elif run_again == "Y":
-            weight_convertion()
-        elif run_again == "n":
-              print("bye")
-        elif run_again == "N":
-              print("bye")
-        else:
-              run_again = input("Wrong Input, Do you want to run again? y/n or Y/N: ")
-        if run_again == "y":
-              weight_convertion()
-        elif run_again == "Y":
-            weight_convertion()
-        elif run_again == "n":
-              print("bye")
-        elif run_again == "N":
-              print("bye")
-        else:
-              print("U too stupid brawn for brains!")
 
 weight_convertion()
