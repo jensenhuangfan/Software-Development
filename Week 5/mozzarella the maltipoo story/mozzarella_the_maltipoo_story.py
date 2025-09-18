@@ -32,7 +32,7 @@ def show_location():
     elif current_location == "starbucks":
         print("your at starbucks working on your code while mozzarella the maltipoo is eatting tons of pup cups.")
     elif current_location == "cinemark":
-        print("your watching the smerfs movie")
+        print('your at the lobby, you need to have a ticket to see the smerfs movie, mozzarella the gets in free though if you buy a ticket. to buy a ticket type "buy ticket" to use a ticket type "use ticket" ')
     elif current_location == "park":
         print("you take mozzarella the maltipoo on a walk.")
     else:
@@ -53,7 +53,7 @@ def move_player(dest):
         return
     if dest in exits[cur_idx]:
         current_location = dest
-        locations()
+        show_location()
     else:
         print("You can't go there from here.")
 
