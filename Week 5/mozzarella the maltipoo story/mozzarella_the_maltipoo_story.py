@@ -2,16 +2,16 @@ print("=== mozzarella the maltipoo adventure ===")
 print("Type 'help' for commands. \n")
 
 #game stats
+#game stats
 current_location = "home" #starting place
-locations = ["starbucks", "cinemark", "park", "school"]
+locations = ["home", "starbucks", "cinemark", "park", "school"]
 exits = [
-    ["starbucks", "cinemark", "park", "school"], #starbucks exits
-    ["home", "cinemark", "park", "school"], #home exits
-    ["starbucks", "home", "park", "school"], #cinemark exits
-    ["starbucks", "cinemark", "home", "school"], #park exits
-    ["starbucks", "cinemark", "park", "home"] #school exits
-    ]               # parallel lists example (room -> exits list index)
-
+    ["starbucks", "cinemark", "park", "school"], # home exits
+    ["home", "cinemark", "park", "school"], # starbucks exits
+    ["starbucks", "home", "park", "school"], # cinemark exits
+    ["starbucks", "cinemark", "home", "school"], # park exits
+    ["starbucks", "cinemark", "park", "home"] # school exits
+]
 
 inventory = []
 
