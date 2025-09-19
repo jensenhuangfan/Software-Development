@@ -21,7 +21,6 @@ buyable_items = ["Steak", "ticket",]
 money = int(10)
 moz_points = int(0)
 turns_left = 20
-has_won = False
 is_running = True
 
 def show_help():
@@ -94,16 +93,26 @@ def move_player(dest):
 def use_item(item):
     global moz_points
     global current_location
-    if current_location == "cinemark" and item == "ticket":
-        print("You and mozzarella the maltipoo saw the minecraft movie")
-        moz_points = moz_points + 100
-        current_location = "home"
-    if item == "steak":
-        random_number3 = random.randint(10, 30)
-        print(f"mozzarella the maltipoo liked the steak! you gained {random_number3} moz points!")
-        moz_points = moz_points + random_number3
+    global inventory
+    global turns_left
+    
+    if item in inventory:
+        if current_location == "cinemark" and item == "ticket":
+            print("You and mozzarella the maltipoo saw the minecraft movie")
+            moz_points = moz_points + 100
+            inventory.remove("ticket") # Remove the ticket after use
+            current_location = "home"
+        elif item == "steak":
+            random_number3 = random.randint(10, 30)
+            print(f"mozzarella the maltipoo liked the steak! you gained {random_number3} moz points!")
+            moz_points = moz_points + random_number3
+            inventory.remove("steak") # Remove the steak after use
+        else:
+            turns_left = turns_left + 1
+            print(f"You can't use {item} at {current_location}.")
     else:
-        print(f"no usable items at {current_location}")
+        turns_left = turns_left + 1
+        print(f"You don't have a {item} in your inventory.")
 
 def buy_item(item_name):
     global money
@@ -160,24 +169,24 @@ def handle_command(cmd):
 
 # --- main loop ---
 show_location()
+
+while is_running:
+# optional: pressure mechanic
+turns_left -= 1
+print(f"turns left = {turns_left}")
+print(f"Money = ${money}")
+print(f"Moz points = {moz_points}")
+
 if moz_points >= 69:
-    has_won = True
-else:
-    while is_running and not has_won:
-     # optional: pressure mechanic
-     turns_left -= 1
-     print(f"turns left = {turns_left}")
-     print(f"Money = ${money}")
-     print(f"Moz points = {moz_points}")
-     if turns_left <= 0:
-        print("\nmozzarella the maltipoo and you didn't finish the adventure. You lose.")
-        break
-
-
-     cmd = input("\n> ")
-     handle_command(cmd)
-
-
-if has_won:
     print("\nmozzarella the maltipoo is super happy now, you win!")
+    break
+
+if turns_left <= 0:
+    print("\nmozzarella the maltipoo and you didn't finish the adventure. You lose.")
+    break
+
+
+cmd = input("\n> ")
+handle_command(cmd)
+
 print("Game over.")
