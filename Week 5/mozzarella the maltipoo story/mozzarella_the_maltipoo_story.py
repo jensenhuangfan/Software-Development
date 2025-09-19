@@ -1,41 +1,72 @@
+import random
 print("=== mozzarella the maltipoo adventure ===")
 print("Type 'help' for commands. \n")
 
 #game stats
 #game stats
 current_location = "home" #starting place
-locations = ["home", "starbucks", "cinemark", "park", "school"]
+locations = ["home", "starbucks", "cinemark", "park", "school", "road"]
 exits = [
     ["starbucks", "cinemark", "park", "school"], # home exits
     ["home", "cinemark", "park", "school"], # starbucks exits
     ["starbucks", "home", "park", "school"], # cinemark exits
     ["starbucks", "cinemark", "home", "school"], # park exits
     ["starbucks", "cinemark", "park", "home"] # school exits
+    ["starbucks", "cinemark", "park", "home", "school"] # school exits
 ]
 
 inventory = []
+buyable_items = ["Steak", "ticket",]
 
-money = int(0)
+money = int(10)
 moz_points = int(0)
 turns_left = 20
 has_won = False
 is_running = True
 
 def show_help():
-    print("Commands: look, go <location>, take <item>, use <item>, inv, help, quit")
+    global turns_left
+    turns_left = turns_left + 1
+    print("Commands: look, go <location>, buy <item>, use <item>, inv, help, quit")
 
 def show_location():
     print(f"\nYou are at {current_location}.")
+    global money
+    global moz_points
+    global turns_left
     # describe based on location
     if current_location == "school":
         print("You're working as a teacher so you can afford to take mozzarella the maltipoo on adventures.")
+        money = money + 3
+        print("Your now on the road, you can go anywhere, even back to where you just were.")
+        current_location = "road"
     elif current_location == "starbucks":
-        print("your at starbucks working on your code while mozzarella the maltipoo is eatting tons of pup cups.")
+        if money < 5:
+            turns_left = turns_left + 1
+            print(f"Sorry you need at least $5 to go to starbucks, your balance is ${money}")
+        else:
+            print("your at starbucks working on your code while mozzarella the maltipoo is eatting tons of pup cups.")
+            moz_points = moz_points + 1
+            random_number = random.randint(1, 20)
+            if random_number == 20:
+                random_number2 = random.randint(5, 100)
+                print(f"You finished your code and sold code to a client and made ${random_number2}")
+                money = money + random_number2
+                print("Your now on the road, you can go anywhere, even back to where you just were.")
+                current_location = "road"
+            else:
+                money = money - 5
+                print("Your now on the road, you can go anywhere, even back to where you just were.")
+                current_location = "road"
     elif current_location == "cinemark":
-        print('your at the lobby, you need to have a ticket to see the smerfs movie, mozzarella the gets in free though if you buy a ticket. to buy a ticket type "buy ticket" to use a ticket type "use ticket" ')
+        print('your at the lobby, you need to have a ticket to see the minecraft movie, mozzarella the gets in free though if you buy a ticket for 13$. to buy a ticket type "buy ticket" to use a ticket type "use ticket" ')
     elif current_location == "park":
-        print("you take mozzarella the maltipoo on a walk.")
+        print("you took mozzarella the maltipoo on a walk.")
+        print("Your now on the road, you can go anywhere, even back to where you just were.")
+        current_location = "road"
+        moz_points = moz_points + 3
     else:
+        turns_left = turns_left + 1
         print("You're wondering where to take mozzarella the maltipoo.")
 
 def location_index(name):
@@ -60,10 +91,20 @@ def move_player(dest):
 def use_item(item):
     global moz_points
     if current_location == "cinemark" and item == "ticket":
-        print("You and mozzarella the maltipoo saw the smerfs movie")
-        moz_points = moz_points + 5
+        print("You and mozzarella the maltipoo saw the minecraft movie")
+        moz_points = moz_points + 10
+        current_location = "home"
+    if item == "steak":
+        random_number3 = random.randint(10, 30)
+        print(f"mozzarella the maltipoo liked the steak! you gained {random_number3} moz points!")
+        moz_points = moz_points + random_number3
     else:
         print("no usable items.")
+
+def buy_item():
+    global buyable_items
+
+
 
 
 def handle_command(cmd):
@@ -76,19 +117,22 @@ def handle_command(cmd):
         show_location()
     elif parts[0] == "go" and len(parts) >= 2:
         move_player(parts[1])
-    elif parts[0] == "take" and len(parts) >= 2:
-        use_item(parts[1])
+    elif parts[0] == "store":
+        global turns_left
+        turns_left = turns_left + 1
+        print('type "buy steak" to buy a steak for $15, it will give somewhere from 10 to 30 moz points' \
+        'type "buy ticket" to buy a ticket for $10 it will give 10 moz points when you use it at Cinemark')
+    elif parts[0] == "buy" and len(parts) >= 2:
+        buy_item()
     elif parts[0] == "inv":
         print("Inventory:", inventory if inventory else "(empty)")
     elif parts[0] == "quit":
         global is_running
         is_running = False
     else:
+        global turns_left
+        turns_left = turns_left + 1
         print("Unknown command. Type 'help'.")
-
-
-
-
 
 
 # --- main loop ---
@@ -96,8 +140,11 @@ show_location()
 while is_running and not has_won:
     # optional: pressure mechanic
     turns_left -= 1
+    print(f"turns left = {turns_left}")
+    print(f"Money = ${money}")
+    print(f"Moz points = {moz_points}")
     if turns_left <= 0:
-        print("\nStormtroopers catch you in the forest. You lose.")
+        print("\nmozzarella the maltipoo and you didn't finish the adventure. You lose.")
         break
 
 
@@ -106,5 +153,5 @@ while is_running and not has_won:
 
 
 if has_won:
-    print("\nVictory! Thanks for playing.")
+    print("\nmozzarella the maltipoo is super happy now, you win!")
 print("Game over.")
