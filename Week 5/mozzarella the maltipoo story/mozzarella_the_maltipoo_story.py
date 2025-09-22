@@ -3,7 +3,6 @@ print("=== mozzarella the maltipoo adventure ===")
 print("Type 'help' for commands. \n")
 
 #game stats
-#game stats
 current_location = "home" #starting place
 locations = ["home", "starbucks", "cinemark", "park", "school", "road"]
 exits = [
@@ -22,6 +21,7 @@ money = int(10)
 moz_points = int(0)
 turns_left = 20
 is_running = True
+has_won = False
 
 def show_help():
     global turns_left
@@ -99,7 +99,7 @@ def use_item(item):
     if item in inventory:
         if current_location == "cinemark" and item == "ticket":
             print("You and mozzarella the maltipoo saw the minecraft movie")
-            moz_points = moz_points + 100
+            moz_points = moz_points + 10
             inventory.remove("ticket") # Remove the ticket after use
             current_location = "home"
         elif item == "steak":
@@ -167,26 +167,28 @@ def handle_command(cmd):
         print("Unknown command. Type 'help'.")
 
 
-# --- main loop ---
 show_location()
 
 while is_running:
-# optional: pressure mechanic
-turns_left -= 1
-print(f"turns left = {turns_left}")
-print(f"Money = ${money}")
-print(f"Moz points = {moz_points}")
+    # Check for win condition at the start of each turn
+    if moz_points >= 69:
+        has_won = True
+        break
+    
+    # optional: pressure mechanic
+    turns_left -= 1
+    print(f"turns left = {turns_left}")
+    print(f"Money = ${money}")
+    print(f"Moz points = {moz_points}")
+    if turns_left <= 0:
+        print("\nmozzarella the maltipoo and you didn't finish the adventure. You lose.")
+        break
 
-if moz_points >= 69:
+
+    cmd = input("\n> ")
+    handle_command(cmd)
+
+
+if has_won:
     print("\nmozzarella the maltipoo is super happy now, you win!")
-    break
-
-if turns_left <= 0:
-    print("\nmozzarella the maltipoo and you didn't finish the adventure. You lose.")
-    break
-
-
-cmd = input("\n> ")
-handle_command(cmd)
-
 print("Game over.")
