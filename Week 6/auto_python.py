@@ -58,5 +58,4 @@ def send_email():
     jfk.moveTo(1322, 999)
     time.sleep(.05)
     jfk.click(1322, 999)
-
 send_email()
