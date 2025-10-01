@@ -11,13 +11,10 @@ print("Move the mouse to the left or press Ctrl C to abort")
 def pointer_location():
     try:
         while True:
-            j.click(2173,385)
-            j.write("")
-            j.click(2175,1151)
-            j.click(2187,1306)
-            time.sleep(.35)
+            j.click(2176,996)
+            j.click(2187,1169)
+            time.sleep(.2)
             j.click(2263,242)
-            time.sleep(.25)
 
     except KeyboardInterrupt:
         print("\nDone")
