@@ -22,7 +22,7 @@ class Player:
 
 # Create two separate Player Objects from Our Blueprint Above
 
-player1 = Player("JFK", 35)
+player1 = Player("Kaya", 49)
 player2 = Player("Me", 58)
 enemy1 = Player("Hasan Piker", 1)
 
@@ -34,6 +34,6 @@ print(f"{player2.name} is level {player2.level}, has {player2.health}.")
 
 player1.take_damage(100)
 
-print(f"{player1.name} now has {player1.health} left after getting no scoped")
-print(f"{player2.name} got {player1.name}'s reboot card.")
+print(f"{player1.name} now has {player1.health} health left after getting shocked by the evil {enemy1.name}")
+print(f"{player2.name} got {player1.name}'s reboot card and revived her.")
 player1.heal(100)
